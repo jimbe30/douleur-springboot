@@ -3,6 +3,8 @@ package net.jimbe.douleur.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the compatibilite database table.
@@ -27,6 +29,7 @@ public class Compatibilite implements Serializable {
 	//bi-directional many-to-one association to Preconisation
 	@ManyToOne
 	@JoinColumn(name="id_preconisation", nullable=false)
+	@JsonIgnore
 	private Preconisation preconisation;
 
 	//bi-directional many-to-one association to Produit

@@ -2,6 +2,9 @@ package net.jimbe.douleur.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -33,6 +36,7 @@ public class Produit implements Serializable {
 
 	//bi-directional many-to-one association to Compatibilite
 	@OneToMany(mappedBy="produit")
+	@JsonIgnore
 	private List<Compatibilite> compatibilites;
 
 	public Produit() {

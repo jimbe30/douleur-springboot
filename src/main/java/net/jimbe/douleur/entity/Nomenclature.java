@@ -41,9 +41,10 @@ public class Nomenclature implements Serializable {
 	@OneToMany(mappedBy="nomenclatureParent", fetch=FetchType.EAGER)
 	private List<Nomenclature> nomenclaturesEnfants;
 
-//	//bi-directional many-to-one association to Preconisation
-//	@OneToMany(mappedBy="nomenclatureDouleur")
-//	private List<Preconisation> preconisations;
+	//bi-directional many-to-one association to Preconisation
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="nomenclatureDouleur")
+	@JsonIgnore
+	private List<Preconisation> preconisations;
 
 	public Nomenclature() {
 	}
@@ -110,26 +111,26 @@ public class Nomenclature implements Serializable {
 		return nomenclaturesEnfant;
 	}
 
-//	public List<Preconisation> getPreconisations() {
-//		return this.preconisations;
-//	}
-//
-//	public void setPreconisations(List<Preconisation> preconisations) {
-//		this.preconisations = preconisations;
-//	}
-//
-//	public Preconisation addPreconisation(Preconisation preconisation) {
-//		getPreconisations().add(preconisation);
-//		preconisation.setNomenclatureDouleur(this);
-//
-//		return preconisation;
-//	}
-//
-//	public Preconisation removePreconisation(Preconisation preconisation) {
-//		getPreconisations().remove(preconisation);
-//		preconisation.setNomenclatureDouleur(null);
-//
-//		return preconisation;
-//	}
+	public List<Preconisation> getPreconisations() {
+		return this.preconisations;
+	}
+
+	public void setPreconisations(List<Preconisation> preconisations) {
+		this.preconisations = preconisations;
+	}
+
+	public Preconisation addPreconisation(Preconisation preconisation) {
+		getPreconisations().add(preconisation);
+		preconisation.setNomenclatureDouleur(this);
+
+		return preconisation;
+	}
+
+	public Preconisation removePreconisation(Preconisation preconisation) {
+		getPreconisations().remove(preconisation);
+		preconisation.setNomenclatureDouleur(null);
+
+		return preconisation;
+	}
 
 }

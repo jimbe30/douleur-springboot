@@ -2,6 +2,9 @@ package net.jimbe.douleur.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -18,18 +21,24 @@ public class Preconisation implements Serializable {
 	@Id
 	@Column(unique=true, nullable=false)
 	private Long id;
+	
+	@Column(name="id_douleur", insertable=false, updatable=false)
+	private long idDouleur;
 
 	@Column(nullable=false, length=200)
 	private String description;
 
 	@Column(name="duree_max")
-	private int dureeMax;
+	private Integer dureeMax;
 
 	@Column(name="duree_min")
-	private int dureeMin;
+	private Integer dureeMin;
 
 	@Column(name="num_ordonnance", nullable=false)
 	private int numOrdonnance;
+	
+	@Column(name="num_medicament", nullable=false)
+	private int numMedicament;
 
 	@Column(length=100)
 	private String recommandation;
@@ -62,7 +71,7 @@ public class Preconisation implements Serializable {
 		this.description = description;
 	}
 
-	public int getDureeMax() {
+	public Integer getDureeMax() {
 		return this.dureeMax;
 	}
 
@@ -70,7 +79,7 @@ public class Preconisation implements Serializable {
 		this.dureeMax = dureeMax;
 	}
 
-	public int getDureeMin() {
+	public Integer getDureeMin() {
 		return this.dureeMin;
 	}
 
@@ -115,13 +124,29 @@ public class Preconisation implements Serializable {
 
 		return compatibilite;
 	}
-
+	@JsonIgnore
 	public Nomenclature getNomenclatureDouleur() {
 		return this.nomenclatureDouleur;
 	}
 
 	public void setNomenclatureDouleur(Nomenclature nomenclatureDouleur) {
 		this.nomenclatureDouleur = nomenclatureDouleur;
+	}
+
+	public long getIdDouleur() {
+		return idDouleur;
+	}
+
+	public void setIdDouleur(long idDouleur) {
+		this.idDouleur = idDouleur;
+	}
+
+	public int getNumMedicament() {
+		return numMedicament;
+	}
+
+	public void setNumMedicament(int numMedicament) {
+		this.numMedicament = numMedicament;
 	}
 
 }
