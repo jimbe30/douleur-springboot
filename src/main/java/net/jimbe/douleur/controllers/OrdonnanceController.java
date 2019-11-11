@@ -16,7 +16,7 @@ import net.jimbe.douleur.services.ServiceDouleur;
 @RestController
 @RequestMapping("/ordonnances")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class OrdonnanceDouleurController {
+public class OrdonnanceController {
 	
 	@Autowired
 	NomenclatureRepository nomenclatureRepository;
