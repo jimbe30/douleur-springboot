@@ -34,8 +34,8 @@ public class OrdonnanceController {
 		}
 		System.out.println(ordonnance);
 
-		String ordonnanceModeleName = "resources/modeles/ordonnance_modele.pdf";
-		String targetName = "resources/modeles/ordonnance_emise.pdf";
+		String ordonnanceModeleName = "/resources/modeles/ordonnance_modele.pdf";
+		String targetName = "output/ordonnance_emise.pdf";
 		byte[] contents = new byte[0];
 		try {
 			contents = PDFBuilder.editOrdonnancePDF(ordonnanceModeleName, targetName, ordonnance);
