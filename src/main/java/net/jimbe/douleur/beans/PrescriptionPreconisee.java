@@ -9,7 +9,7 @@ import net.jimbe.douleur.entity.Nomenclature;
 import net.jimbe.douleur.entity.Preconisation;
 import net.jimbe.douleur.exceptions.NomenclatureDouleurException;
 
-public class Prescription {
+public class PrescriptionPreconisee {
 	
 	private List<Preconisation> medicamentsPreconises = new ArrayList<Preconisation>();
 	private Nomenclature nomenclatureDouleur;

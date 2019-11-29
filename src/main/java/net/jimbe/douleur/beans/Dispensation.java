@@ -2,40 +2,18 @@ package net.jimbe.douleur.beans;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Dispensation {
 
-	private String medicament;
-	private List<String> dosages = new ArrayList<>();
+	private String libelle;
+	private List<Map<String, String>> produits = new ArrayList<>();
 	private String quantite;
 	private String forme;
 	private String frequence;
 	private String duree;
 	
-	
-	public String getMedicament() {
-		return medicament;
-	}
-	
-	public void setMedicament(String medicament) {
-		this.medicament = medicament;
-	}
-	
-	public List<String> getDosages() {
-		return dosages;
-	}
-	
-	public void setDosages(List<String> dosages) {
-		this.dosages = dosages;
-	}
-	
-	public void setDosage(int index, String dosage) {
-		this.dosages.add(index, dosage);
-	}
-	
-	public void addDosage(String dosage) {
-		this.dosages.add(dosage);
-	}
+
 	
 	public String getQuantite() {
 		return quantite;
@@ -67,9 +45,33 @@ public class Dispensation {
 		this.duree = duree;
 	}
 
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+	
+	public List<Map<String, String>> getProduits() {
+		return produits;
+	}
+	
+	public void setProduits(List<Map<String, String>> produits) {
+		this.produits = produits;
+	}
+	
+	public void setProduit(int index, Map<String, String> produit) {
+		this.produits.add(index, produit);
+	}
+	
+	public void addProduit(Map<String, String> produit) {
+		this.produits.add(produit);
+	}
+	
 	@Override
 	public String toString() {
-		return "Dispensation [medicament=" + medicament + ", dosages=" + dosages + ", quantite=" + quantite + ", forme="
+		return "Dispensation [libelle=" + libelle + ", produits=" + produits + ", quantite=" + quantite + ", forme="
 				+ forme + ", frequence=" + frequence + ", duree=" + duree + "]";
 	}
 

@@ -1,52 +1,35 @@
 package net.jimbe.douleur.beans;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 public class OrdonnanceForm {
 
-	private int nbMedicaments;
-	private List<Dispensation> medicaments = new ArrayList<>();
-	private String recommandations;
+	@NotNull @Valid
+	private InfosPatientForm infosPatient;
+	@NotNull @Valid
+	private PrescriptionForm prescription;
 	
-	public void setMedicament(int index, Dispensation medicament) {
-		this.medicaments.add(index, medicament);
+	
+	public InfosPatientForm getInfosPatient() {
+		return infosPatient;
+	}
+	public void setInfosPatient(InfosPatientForm infosPatient) {
+		this.infosPatient = infosPatient;
+	}
+	public PrescriptionForm getPrescription() {
+		return prescription;
+	}
+	public void setPrescription(PrescriptionForm prescription) {
+		this.prescription = prescription;
 	}
 	
-	public void addMedicament(Dispensation medicament) {
-		this.medicaments.add(medicament);
-	}
-
-	public int getNbMedicaments() {
-		return nbMedicaments;
-	}
-
-	public void setNbMedicaments(int nbMedicaments) {
-		this.nbMedicaments = nbMedicaments;
-	}
-
-	public List<Dispensation> getMedicaments() {
-		return medicaments;
-	}
-
-	public void setMedicaments(List<Dispensation> medicaments) {
-		this.medicaments = medicaments;
-	}
-
-	public String getRecommandations() {
-		return recommandations;
-	}
-
-	public void setRecommandations(String recommandations) {
-		this.recommandations = recommandations;
-	}
 	
 	@Override
 	public String toString() {
-		return "OrdonnanceForm [nbMedicaments=" + nbMedicaments + ", medicaments=" + medicaments + ", recommandations="
-				+ recommandations + "]";
+		return "OrdonnanceForm [" + (infosPatient != null ? "infosPatient=" + infosPatient + ", " : "")
+				+ (prescription != null ? "prescription=" + prescription : "") + "]";
 	}
-
 
 
 	

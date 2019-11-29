@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.jimbe.douleur.beans.Prescription;
+import net.jimbe.douleur.beans.PrescriptionPreconisee;
 import net.jimbe.douleur.dao.NomenclatureRepository;
 import net.jimbe.douleur.entity.Nomenclature;
 import net.jimbe.douleur.services.ServiceDouleur;
@@ -31,8 +31,8 @@ public class DouleurController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, path="/{idDouleur}")
-	public List<Prescription> getFicheDouleur(@PathVariable int idDouleur) {
-		List<Prescription> presciptions = serviceDouleur.getPrescriptionsProposees(idDouleur);
+	public List<PrescriptionPreconisee> getFicheDouleur(@PathVariable int idDouleur) {
+		List<PrescriptionPreconisee> presciptions = serviceDouleur.getPrescriptionsProposees(idDouleur);
 		return presciptions;
 	}
 
