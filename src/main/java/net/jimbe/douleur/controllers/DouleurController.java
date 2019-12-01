@@ -32,8 +32,12 @@ public class DouleurController {
 	
 	@RequestMapping(method=RequestMethod.GET, path="/{idDouleur}")
 	public List<PrescriptionPreconisee> getFicheDouleur(@PathVariable int idDouleur) {
-		List<PrescriptionPreconisee> presciptions = serviceDouleur.getPrescriptionsProposees(idDouleur);
-		return presciptions;
+		List<PrescriptionPreconisee> prescriptions = serviceDouleur.getPrescriptionsProposees(idDouleur);
+		if (prescriptions == null || prescriptions.isEmpty()) {
+			String message = "Aucune ordonnance n'est encore proposée pour cette douleur";
+			throw new RuntimeException(message);
+		}
+		return prescriptions;
 	}
 
 	

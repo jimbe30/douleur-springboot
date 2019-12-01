@@ -7,7 +7,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,12 +26,7 @@ public class OrdonnanceController {
 	ServiceDouleur serviceDouleur;
 
 	@RequestMapping(method = RequestMethod.POST, path = "/nouvelle", consumes = "application/json")
-	public ResponseEntity<byte[]> faireOrdonnance(@Valid @RequestBody OrdonnanceForm ordonnance, BindingResult bindingResult) {
-
-		if (bindingResult.hasErrors()) {
-			bindingResult.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
-		}
-		System.out.println(ordonnance);
+	public ResponseEntity<byte[]> faireOrdonnance(@Valid @RequestBody OrdonnanceForm ordonnance) {
 
 		String ordonnanceModeleName = "/resources/modeles/ordonnance_modele.pdf";
 		String targetName = "output/ordonnance_emise.pdf";
@@ -41,11 +35,12 @@ public class OrdonnanceController {
 			contents = PDFBuilder.editOrdonnancePDF(ordonnanceModeleName, targetName, ordonnance);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException("Service indisponible : impossible d'éditer l'ordonnance. Veuillez recommencer ultérieurement");
 		}
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_PDF);
-		// Here you have to set the actual filename of your pdf
+
 		String filename = "ordonnance.pdf";
 		headers.setContentDispositionFormData(filename, filename);
 		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
@@ -53,5 +48,6 @@ public class OrdonnanceController {
 		return response;
 
 	}
+
 
 }
