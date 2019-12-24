@@ -23,9 +23,6 @@ public class Compatibilite implements Serializable {
 	@Column(nullable=false, length=50)
 	private String dosages;
 
-	@Column(nullable=false, length=50)
-	private String formes;
-
 	//bi-directional many-to-one association to Preconisation
 	@ManyToOne
 	@JoinColumn(name="id_preconisation", nullable=false)
@@ -54,14 +51,6 @@ public class Compatibilite implements Serializable {
 
 	public void setDosages(String dosages) {
 		this.dosages = dosages;
-	}
-
-	public String getFormes() {
-		return this.formes;
-	}
-
-	public void setFormes(String formes) {
-		this.formes = formes;
 	}
 
 	public Preconisation getPreconisation() {

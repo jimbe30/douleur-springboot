@@ -19,7 +19,7 @@ public class InfosPatientForm {
 	@JsonFormat(pattern="dd/MM/yyyy")
 	@Past
 	private Date dateNaissance;
-	@Pattern(regexp="^[1-2][0-9]{2}(0[1-9]|1[0-2]|3[1-9]|4[0-2]|[5-9][0-9]|20)([0-9][1-9]|2[AB])[0-9]{6}",message="n° immatriculation erroné")  
+	@Pattern(regexp="^[1-2][0-9]{2}(0[1-9]|1[0-2])([0-9][1-9]|2[AB])[0-9]{6}", message="n° immatriculation erroné")  
 	private String insee;
 	private String sexe;
 
