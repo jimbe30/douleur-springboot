@@ -271,7 +271,7 @@ public class PDFBuilder {
 
 		// infos bénéf
 		PDFont font = PDType1Font.TIMES_BOLD;
-		float size = 10;
+		float size = 11;
 		contentStream.setFont(font, size);
 
 		String nom = ordonnance.getInfosPatient().getNomPatient()
