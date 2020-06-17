@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -14,12 +15,13 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@ComponentScan(basePackages = "net.jmb.module.security")
 public class DouleurAppConfig {
 
 	@Autowired
 	private Environment env;
 
-	@Value("${app.context}")
+	@Value("${app.context:}")
 	private String appContext;
 
 	private Logger logger = Logger.getLogger(getClass().getName());
