@@ -1,5 +1,4 @@
 
-
 heroku login --> jmbrun1969@yahoo.fr : Bobob1969$
 
 heroku config --app pain-control-pro
@@ -12,3 +11,23 @@ spring.datasource.username=b16f5069e0137d
 spring.datasource.password=0fa4682f
 
 
+#####      Déployer une image Docker      #####
+
+Exemple pour Keycloak:
+
+	cd c:\dev_demo\git_repositories\keycloak-oidc
+	
+	Dans répertoire, fichier Procfile 
+	=> 	web: docker run -d -e KEYCLOAK_USER="admin" -e KEYCLOAK_PASSWORD="admin" registry.heroku.com/keycloak-oidc
+	
+	docker build -t registry.heroku.com/keycloak-oidc/web .
+	
+	heroku login -i
+	heroku container:login
+	heroku create keycloak-oidc
+	
+	docker push registry.heroku.com/keycloak-oidc/web
+	
+	heroku container:release web
+	
+	heroku logs --tail
