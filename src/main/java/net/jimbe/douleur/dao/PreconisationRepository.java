@@ -10,7 +10,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import net.jimbe.douleur.entity.Preconisation;
 
 @RepositoryRestResource(path="douleurs/{idDouleur}")
-// http://localhost:8080/api/douleurs
+// http://localhost:6969/api/douleurs
 public interface PreconisationRepository extends JpaRepository<Preconisation, Long>  {
 
 	@Query("select p from Preconisation p where p.idDouleur = :idDouleur order by p.numOrdonnance, p.numMedicament")
