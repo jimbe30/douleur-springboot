@@ -5,7 +5,9 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 /**
@@ -19,11 +21,12 @@ public class Preconisation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
 	private Long id;
 	
 	@Column(name="id_douleur", insertable=false, updatable=false)
-	private long idDouleur;
+	private Long idDouleur;
 
 	@Column(nullable=false, length=200)
 	private String description;
@@ -33,23 +36,35 @@ public class Preconisation implements Serializable {
 
 	@Column(name="duree_min")
 	private Integer dureeMin;
+	
+	@Column(name="frequence_max")
+	private Integer frequenceMax;
+
+	@Column(name="frequence_min")
+	private Integer frequenceMin;
+	
+	@Column(name="frequence_autre", length = 50)
+	private String frequenceAutre;
+	
+	@Column(length=100)
+	private String formes;
 
 	@Column(name="num_ordonnance", nullable=false)
-	private int numOrdonnance;
+	private Integer numOrdonnance;
 	
 	@Column(name="num_medicament", nullable=false)
-	private int numMedicament;
+	private Integer numMedicament;
 
 	@Column(length=100)
 	private String recommandation;
 
 	//bi-directional many-to-one association to Compatibilite
-	@OneToMany(mappedBy="preconisation")
+	@OneToMany(mappedBy="preconisation", cascade= {CascadeType.PERSIST})
 	private List<Compatibilite> compatibilites;
 
 	//bi-directional many-to-one association to Nomenclature
 	@ManyToOne
-	@JoinColumn(name="id_douleur", nullable=false)
+	@JoinColumn(name="id_douleur")
 	private Nomenclature nomenclatureDouleur;
 
 	public Preconisation() {
@@ -75,7 +90,7 @@ public class Preconisation implements Serializable {
 		return this.dureeMax;
 	}
 
-	public void setDureeMax(int dureeMax) {
+	public void setDureeMax(Integer dureeMax) {
 		this.dureeMax = dureeMax;
 	}
 
@@ -83,15 +98,15 @@ public class Preconisation implements Serializable {
 		return this.dureeMin;
 	}
 
-	public void setDureeMin(int dureeMin) {
+	public void setDureeMin(Integer dureeMin) {
 		this.dureeMin = dureeMin;
 	}
 
-	public int getNumOrdonnance() {
+	public Integer getNumOrdonnance() {
 		return this.numOrdonnance;
 	}
 
-	public void setNumOrdonnance(int numOrdonnance) {
+	public void setNumOrdonnance(Integer numOrdonnance) {
 		this.numOrdonnance = numOrdonnance;
 	}
 
@@ -104,7 +119,30 @@ public class Preconisation implements Serializable {
 	}
 
 	public List<Compatibilite> getCompatibilites() {
+		if (compatibilites == null) {
+			compatibilites = new ArrayList<Compatibilite>();
+		}
 		return this.compatibilites;
+	}
+	
+	public Compatibilite getCompatibilite(Long idCompatibilite) {
+		Compatibilite result = null;
+		if (compatibilites != null && idCompatibilite != null) {
+			try {
+				result = compatibilites
+						.stream()
+						.filter(compat -> idCompatibilite.equals(compat.getId()))
+						.findFirst()
+						.get();
+			} catch (NoSuchElementException e) {
+				result = null;
+			}
+		}
+		if (result == null) {
+			result = new Compatibilite();
+			addCompatibilite(result);
+		}
+		return result;
 	}
 
 	public void setCompatibilites(List<Compatibilite> compatibilites) {
@@ -133,20 +171,52 @@ public class Preconisation implements Serializable {
 		this.nomenclatureDouleur = nomenclatureDouleur;
 	}
 
-	public long getIdDouleur() {
+	public Long getIdDouleur() {
 		return idDouleur;
 	}
 
-	public void setIdDouleur(long idDouleur) {
+	public void setIdDouleur(Long idDouleur) {
 		this.idDouleur = idDouleur;
 	}
 
-	public int getNumMedicament() {
+	public Integer getNumMedicament() {
 		return numMedicament;
 	}
 
-	public void setNumMedicament(int numMedicament) {
+	public void setNumMedicament(Integer numMedicament) {
 		this.numMedicament = numMedicament;
+	}
+
+	public Integer getFrequenceMax() {
+		return frequenceMax;
+	}
+
+	public void setFrequenceMax(Integer frequenceMax) {
+		this.frequenceMax = frequenceMax;
+	}
+
+	public Integer getFrequenceMin() {
+		return frequenceMin;
+	}
+
+	public void setFrequenceMin(Integer frequenceMin) {
+		this.frequenceMin = frequenceMin;
+	}
+
+	public String getFrequenceAutre() {
+		return frequenceAutre;
+	}
+
+	public void setFrequenceAutre(String frequenceAutre) {
+		this.frequenceAutre = frequenceAutre;
+	}
+
+	public String getFormes() {
+		return formes;
+	}
+
+	public void setFormes(String formes) {
+		this.formes = formes;
 	}
 
 }

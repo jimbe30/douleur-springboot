@@ -62,12 +62,21 @@ public class MedicamentType implements Serializable {
 		this.description = description;
 	}
 
-	public String getFormes() {
+	@JsonIgnore
+	public String getConcatFormes() {
 		return this.formes != null ? this.formes.trim() : "" ;
 	}
 
-	public void setFormes(String formes) {
+	public void setConcatFormes(String formes) {
 		this.formes = formes;
+	}
+	
+	public List<String> getFormes() {
+		return Arrays.asList(getConcatFormes().split("\\|"));
+	}
+
+	public void setFormes(List<String> formes) {
+		setConcatFormes(formes.stream().reduce((a, b) -> a.concat("|").concat(b)).get());
 	}
 
 	public OrdonnanceType getOrdonnanceType() {
@@ -101,13 +110,6 @@ public class MedicamentType implements Serializable {
 		return produitType;
 	}
 
-	public List<String> getListeFormes() {
-		return Arrays.asList(getFormes().split("\\|"));
-	}
-
-	public void setListeFormes(List<String> listeFormes) {
-		setFormes(listeFormes.stream().reduce((a, b) -> a.concat("|").concat(b)).get());
-	}
 
 	@Override
 	public String toString() {

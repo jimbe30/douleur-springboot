@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.jimbe.douleur.beans.PrescriptionPreconisee;
 import net.jimbe.douleur.dao.NomenclatureRepository;
 import net.jimbe.douleur.entity.Nomenclature;
-import net.jimbe.douleur.services.ServiceDouleur;
+import net.jimbe.douleur.services.DouleurService;
 
 @RestController
 @RequestMapping("/douleurs")
@@ -22,7 +22,7 @@ public class DouleurController {
 	@Autowired
 	NomenclatureRepository nomenclatureRepository;
 	@Autowired
-	ServiceDouleur serviceDouleur;
+	DouleurService douleurService;
 
 	@RequestMapping("/arborescence")
 	public List<Nomenclature> getNomenclatureDouleur() {
@@ -32,7 +32,7 @@ public class DouleurController {
 	
 	@RequestMapping(method=RequestMethod.GET, path="/{idDouleur}")
 	public List<PrescriptionPreconisee> getFicheDouleur(@PathVariable int idDouleur) {
-		List<PrescriptionPreconisee> prescriptions = serviceDouleur.getPrescriptionsProposees(idDouleur);
+		List<PrescriptionPreconisee> prescriptions = douleurService.getPrescriptionsProposees(idDouleur);
 		if (prescriptions == null || prescriptions.isEmpty()) {
 			String message = "Aucune ordonnance n'est encore proposée pour cette douleur";
 			throw new RuntimeException(message);

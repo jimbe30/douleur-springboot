@@ -22,12 +22,14 @@ public class ProduitType implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
+	@JsonIgnore
 	private Long id;
 
 	@Column(nullable=false, length=100)
 	private String description;
 
 	@Column(nullable=false, length=100)
+	@JsonIgnore
 	private String dosages;
 
 	@Column(name="unite_dosage", nullable=false, length=10)
@@ -45,6 +47,7 @@ public class ProduitType implements Serializable {
 	//bi-directional many-to-one association to Produit
 	@ManyToOne
 	@JoinColumn(name="id_produit", insertable=false, updatable=false)
+	@JsonIgnore
 	private Produit produit;
 
 	public ProduitType() {
@@ -121,6 +124,22 @@ public class ProduitType implements Serializable {
 
 	public void setIdProduit(Long idProduit) {
 		this.idProduit = idProduit;
+	}
+
+	public String getCode() {
+		return produit.getCode();
+	}
+
+	public String getDesignation() {
+		return produit.getDesignation();
+	}
+
+	public String getIndesirable() {
+		return produit.getIndesirable();
+	}
+
+	public String getIndication() {
+		return produit.getIndication();
 	}
 
 }

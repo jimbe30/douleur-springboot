@@ -1,11 +1,14 @@
 package net.jimbe.douleur.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -19,6 +22,7 @@ public class Produit implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
 	private Long id;
 
@@ -33,11 +37,6 @@ public class Produit implements Serializable {
 
 	@Column(length=200)
 	private String indication;
-
-	//bi-directional many-to-one association to Compatibilite
-	@OneToMany(mappedBy="produit")
-	@JsonIgnore
-	private List<Compatibilite> compatibilites;
 
 	public Produit() {
 	}
@@ -82,26 +81,5 @@ public class Produit implements Serializable {
 		this.indication = indication;
 	}
 
-	public List<Compatibilite> getCompatibilites() {
-		return this.compatibilites;
-	}
-
-	public void setCompatibilites(List<Compatibilite> compatibilites) {
-		this.compatibilites = compatibilites;
-	}
-
-	public Compatibilite addCompatibilite(Compatibilite compatibilite) {
-		getCompatibilites().add(compatibilite);
-		compatibilite.setProduit(this);
-
-		return compatibilite;
-	}
-
-	public Compatibilite removeCompatibilite(Compatibilite compatibilite) {
-		getCompatibilites().remove(compatibilite);
-		compatibilite.setProduit(null);
-
-		return compatibilite;
-	}
 
 }

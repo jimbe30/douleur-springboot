@@ -5,7 +5,9 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 /**
@@ -19,11 +21,15 @@ public class Nomenclature implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
 	private Long id;
 
 	@Column(name="infos_generales", length=2000)
 	private String infosGenerales;
+	
+	@Column(name="id_parent")
+	private Long idParent;
 
 	@Column(nullable=false, length=100)
 	private String libelle;
@@ -33,16 +39,16 @@ public class Nomenclature implements Serializable {
 
 	//bi-directional many-to-one association to Nomenclature
 	@ManyToOne
-	@JoinColumn(name="id_parent")
+	@JoinColumn(name="id_parent", insertable=false, updatable=false)
 	@JsonIgnore
 	private Nomenclature nomenclatureParent;
 
 	//bi-directional many-to-one association to Nomenclature
-	@OneToMany(mappedBy="nomenclatureParent", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="nomenclatureParent", fetch=FetchType.EAGER, cascade= {CascadeType.PERSIST})
 	private List<Nomenclature> nomenclaturesEnfants;
 
 	//bi-directional many-to-one association to Preconisation
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="nomenclatureDouleur")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="nomenclatureDouleur", cascade= {CascadeType.PERSIST})
 	@JsonIgnore
 	private List<Preconisation> preconisations;
 
@@ -90,6 +96,9 @@ public class Nomenclature implements Serializable {
 	}
 
 	public List<Nomenclature> getNomenclaturesEnfants() {
+		if (nomenclaturesEnfants == null) {
+			nomenclaturesEnfants = new ArrayList<Nomenclature>();
+		}
 		return this.nomenclaturesEnfants;
 	}
 
@@ -112,7 +121,29 @@ public class Nomenclature implements Serializable {
 	}
 
 	public List<Preconisation> getPreconisations() {
+		if (preconisations == null) {
+			preconisations = new ArrayList<>();
+		}
 		return this.preconisations;
+	}
+	
+	public Preconisation getPreconisation(Long idPreconisation) {
+		Preconisation result = null;
+		if (preconisations != null && idPreconisation != null) {
+			try {
+				result = preconisations
+						.stream()
+						.filter(preco -> idPreconisation.equals(preco.getId())).findFirst()
+						.get();
+			} catch (NoSuchElementException e) {
+				result = null;
+			}
+		}
+		if (result == null) {
+			result = new Preconisation();
+			addPreconisation(result);
+		}
+		return result;
 	}
 
 	public void setPreconisations(List<Preconisation> preconisations) {
@@ -131,6 +162,14 @@ public class Nomenclature implements Serializable {
 		preconisation.setNomenclatureDouleur(null);
 
 		return preconisation;
+	}
+
+	public Long getIdParent() {
+		return idParent;
+	}
+
+	public void setIdParent(Long idParent) {
+		this.idParent = idParent;
 	}
 
 }

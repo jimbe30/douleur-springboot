@@ -29,7 +29,7 @@ import net.jimbe.douleur.entity.Preconisation;
 import net.jimbe.douleur.tools.PDFBuilder;
 
 @Service
-public class ServiceDouleur {
+public class DouleurService {
 
 	@Autowired
 	PreconisationRepository preconisationRepository;

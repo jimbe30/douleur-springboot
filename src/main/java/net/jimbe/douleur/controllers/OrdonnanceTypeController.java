@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.jimbe.douleur.entity.ordonnanceType.OrdonnanceType;
-import net.jimbe.douleur.services.ServiceOdonnanceType;
+import net.jimbe.douleur.services.OrdonnanceTypeService;
 
 @RestController
 @RequestMapping("/ordonnancesTypes")
@@ -18,19 +18,19 @@ import net.jimbe.douleur.services.ServiceOdonnanceType;
 public class OrdonnanceTypeController {
 	
 	@Autowired
-	ServiceOdonnanceType serviceOdonnanceType;
+	OrdonnanceTypeService ordonnanceTypeService;
 
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.POST}, consumes = {"application/json"} )
 	public OrdonnanceType enregistrerOrdonnanceType(@RequestBody OrdonnanceType ordonnanceType) {
 		
-		OrdonnanceType result = serviceOdonnanceType.enregistrer(ordonnanceType);
+		OrdonnanceType result = ordonnanceTypeService.enregistrer(ordonnanceType);
 		System.out.println(result);
 		return result;
 	}
 	
 	@RequestMapping(method= {RequestMethod.GET})
 	public List<OrdonnanceType> lister() {
-		List<OrdonnanceType> listeOrdonnancesTypes = serviceOdonnanceType.lister();
+		List<OrdonnanceType> listeOrdonnancesTypes = ordonnanceTypeService.lister();
 		System.out.println(listeOrdonnancesTypes);
 		return listeOrdonnancesTypes;
 	}

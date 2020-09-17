@@ -9,7 +9,7 @@ import net.jimbe.douleur.dao.OrdonnanceTypeRepository;
 import net.jimbe.douleur.entity.ordonnanceType.OrdonnanceType;
 
 @Service
-public class ServiceOdonnanceType {
+public class OrdonnanceTypeService {
 
 	@Autowired
 	OrdonnanceTypeRepository ordonnanceTypeRepository;
