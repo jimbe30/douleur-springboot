@@ -21,6 +21,8 @@ public class PreconisationMedicament implements Serializable {
 	private String frequencePrecision;
 	private Integer frequenceMax;
 	private Integer frequenceMin;
+	private Integer quantiteMax;
+	private Integer quantiteMin;
 	@JsonIgnore
 	private PreconisationOrdonnance preconisationOrdonnance;
 	private List<PreconisationProduit> produits;
@@ -123,6 +125,22 @@ public class PreconisationMedicament implements Serializable {
 
 	public void setProduits(List<PreconisationProduit> produits) {
 		this.produits = produits;
+	}
+
+	public Integer getQuantiteMax() {
+		return quantiteMax;
+	}
+
+	public void setQuantiteMax(Integer quantiteMax) {
+		this.quantiteMax = quantiteMax;
+	}
+
+	public Integer getQuantiteMin() {
+		return quantiteMin;
+	}
+
+	public void setQuantiteMin(Integer quantiteMin) {
+		this.quantiteMin = quantiteMin;
 	}
 
 }

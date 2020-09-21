@@ -46,6 +46,12 @@ public class Preconisation implements Serializable {
 	@Column(name="frequence_autre", length = 50)
 	private String frequenceAutre;
 	
+	@Column(name="quantite_min")
+	private Integer quantiteMin;
+
+	@Column(name="quantite_max")
+	private Integer quantiteMax;
+	
 	@Column(length=100)
 	private String formes;
 
@@ -217,6 +223,22 @@ public class Preconisation implements Serializable {
 
 	public void setFormes(String formes) {
 		this.formes = formes;
+	}
+
+	public Integer getQuantiteMin() {
+		return quantiteMin;
+	}
+
+	public void setQuantiteMin(Integer quantiteMin) {
+		this.quantiteMin = quantiteMin;
+	}
+
+	public Integer getQuantiteMax() {
+		return quantiteMax;
+	}
+
+	public void setQuantiteMax(Integer quantiteMax) {
+		this.quantiteMax = quantiteMax;
 	}
 
 }

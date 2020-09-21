@@ -96,6 +96,8 @@ public class ProtocoleDouleurService {
 					preconisation.setFrequenceMin(preconisationMedicament.getFrequenceMin());
 					preconisation.setFrequenceMax(preconisationMedicament.getFrequenceMax());
 					preconisation.setFrequenceAutre(preconisationMedicament.getFrequencePrecision());
+					preconisation.setQuantiteMin(preconisationMedicament.getQuantiteMin());
+					preconisation.setQuantiteMax(preconisationMedicament.getQuantiteMax());					
 					preconisation.setFormes(preconisationMedicament.getFormes().stream()
 							.reduce((str1, str2) -> str1.concat("|").concat(str2)).get());
 
@@ -177,6 +179,8 @@ public class ProtocoleDouleurService {
 			preconisationMedicament.setFrequenceMax(preconisation.getFrequenceMax());
 			preconisationMedicament.setFrequenceMin(preconisation.getFrequenceMin());
 			preconisationMedicament.setFrequencePrecision(preconisation.getFrequenceAutre());
+			preconisationMedicament.setQuantiteMax(preconisation.getQuantiteMax());
+			preconisationMedicament.setQuantiteMin(preconisation.getQuantiteMin());
 			preconisationMedicament.setId(preconisation.getId());
 			
 			List<Compatibilite> compatibilites = preconisation.getCompatibilites();
