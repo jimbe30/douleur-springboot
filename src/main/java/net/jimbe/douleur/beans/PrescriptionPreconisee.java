@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import net.jimbe.douleur.entity.Nomenclature;
-import net.jimbe.douleur.entity.Preconisation;
+import net.jimbe.douleur.entity.protocoleDouleur.Nomenclature;
+import net.jimbe.douleur.entity.protocoleDouleur.Preconisation;
 import net.jimbe.douleur.exceptions.NomenclatureDouleurException;
 
 public class PrescriptionPreconisee {

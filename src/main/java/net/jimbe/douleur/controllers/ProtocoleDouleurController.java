@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.jimbe.douleur.beans.protocoleDouleur.ProtocoleDouleur;
-import net.jimbe.douleur.entity.Nomenclature;
+import net.jimbe.douleur.entity.protocoleDouleur.Nomenclature;
 import net.jimbe.douleur.services.ProtocoleDouleurService;
 
 @RestController

@@ -14,11 +14,11 @@ import net.jimbe.douleur.beans.protocoleDouleur.PreconisationMedicament;
 import net.jimbe.douleur.beans.protocoleDouleur.PreconisationOrdonnance;
 import net.jimbe.douleur.beans.protocoleDouleur.PreconisationProduit;
 import net.jimbe.douleur.beans.protocoleDouleur.ProtocoleDouleur;
-import net.jimbe.douleur.dao.NomenclatureRepository;
-import net.jimbe.douleur.dao.PreconisationRepository;
-import net.jimbe.douleur.entity.Compatibilite;
-import net.jimbe.douleur.entity.Nomenclature;
-import net.jimbe.douleur.entity.Preconisation;
+import net.jimbe.douleur.dao.protocoleDouleur.NomenclatureRepository;
+import net.jimbe.douleur.dao.protocoleDouleur.PreconisationRepository;
+import net.jimbe.douleur.entity.protocoleDouleur.Compatibilite;
+import net.jimbe.douleur.entity.protocoleDouleur.Nomenclature;
+import net.jimbe.douleur.entity.protocoleDouleur.Preconisation;
 
 @Service
 public class ProtocoleDouleurService {

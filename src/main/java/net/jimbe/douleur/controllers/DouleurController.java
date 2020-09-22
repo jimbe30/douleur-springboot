@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.jimbe.douleur.beans.PrescriptionPreconisee;
-import net.jimbe.douleur.dao.NomenclatureRepository;
-import net.jimbe.douleur.entity.Nomenclature;
+import net.jimbe.douleur.dao.protocoleDouleur.NomenclatureRepository;
+import net.jimbe.douleur.entity.protocoleDouleur.Nomenclature;
 import net.jimbe.douleur.services.DouleurService;
 
 @RestController

@@ -7,6 +7,7 @@ import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -88,6 +89,9 @@ public class MedicamentType implements Serializable {
 	}
 
 	public List<ProduitType> getProduits() {
+		if (this.produits == null) {
+			this.produits = new ArrayList<ProduitType>();
+		}
 		return this.produits;
 	}
 

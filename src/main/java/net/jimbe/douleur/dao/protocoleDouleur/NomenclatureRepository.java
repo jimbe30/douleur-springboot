@@ -1,4 +1,4 @@
-package net.jimbe.douleur.dao;
+package net.jimbe.douleur.dao.protocoleDouleur;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import net.jimbe.douleur.entity.Nomenclature;
+import net.jimbe.douleur.entity.protocoleDouleur.Nomenclature;
 
 @RepositoryRestResource(path="douleurs")
 // http://localhost:6969/api/douleurs

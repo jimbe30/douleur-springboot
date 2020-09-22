@@ -2,6 +2,8 @@ package net.jimbe.douleur.entity.ordonnanceType;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -47,6 +49,9 @@ public class OrdonnanceType implements Serializable {
 	}
 
 	public List<MedicamentType> getMedicaments() {
+		if (this.medicaments == null) {
+			this.medicaments = new ArrayList<MedicamentType>();
+		}
 		return this.medicaments;
 	}
 

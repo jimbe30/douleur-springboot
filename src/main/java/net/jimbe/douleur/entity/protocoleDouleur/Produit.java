@@ -1,4 +1,4 @@
-package net.jimbe.douleur.entity;
+package net.jimbe.douleur.entity.protocoleDouleur;
 
 import java.io.Serializable;
 

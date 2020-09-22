@@ -24,8 +24,8 @@ import org.springframework.stereotype.Service;
 
 import net.jimbe.douleur.beans.OrdonnanceForm;
 import net.jimbe.douleur.beans.PrescriptionPreconisee;
-import net.jimbe.douleur.dao.PreconisationRepository;
-import net.jimbe.douleur.entity.Preconisation;
+import net.jimbe.douleur.dao.protocoleDouleur.PreconisationRepository;
+import net.jimbe.douleur.entity.protocoleDouleur.Preconisation;
 import net.jimbe.douleur.tools.PDFBuilder;
 
 @Service
