@@ -23,7 +23,7 @@ public class OrdonnanceTypeService {
 			if (ordonnanceType.getId() != null) {
 				supprimerOrdonnanceType(ordonnanceType.getId());
 			}
-			ordonnanceType = supprimerIds(ordonnanceType);
+			ordonnanceType.setId(null);
 			ordonnanceType = ordonnanceTypeRepository.save(ordonnanceType);
 			return ordonnanceType;
 		}
@@ -41,24 +41,6 @@ public class OrdonnanceTypeService {
 		ordonnanceTypeRepository.deleteById(id);
 		return true;
 	}
-	
-	public OrdonnanceType supprimerIds(OrdonnanceType ordonnanceType) {
-		if (ordonnanceType != null) {
-			ordonnanceType.setId(null);
-			ordonnanceType.getMedicaments().forEach(
-				medicament -> {
-					medicament.setId(null);
-					medicament.getProduits().forEach(
-						produit -> produit.setId(null)
-					);
-				}
-					
-			);
-		}
-		return ordonnanceType;
-	}
-	
-
 
 
 }

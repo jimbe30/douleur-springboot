@@ -22,6 +22,7 @@ public class ProduitType implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
+	@JsonIgnore
 	private Long id;
 
 	@Column(nullable=false, length=100)
