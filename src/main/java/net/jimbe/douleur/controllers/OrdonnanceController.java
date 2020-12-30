@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.jimbe.douleur.beans.OrdonnanceForm;
-import net.jimbe.douleur.services.DouleurService;
+import net.jimbe.douleur.ordonnance.OrdonnanceService;
+import net.jimbe.douleur.ordonnance.beans.OrdonnanceForm;
 import net.jimbe.douleur.tools.PDFBuilder;
 
 @RestController
@@ -24,7 +24,7 @@ import net.jimbe.douleur.tools.PDFBuilder;
 public class OrdonnanceController {
 
 	@Autowired
-	DouleurService douleurService;
+	OrdonnanceService ordonnanceService;
 
 
 	@RequestMapping(method = RequestMethod.POST, path = "/nouvelle", consumes = "application/json", produces=MediaType.TEXT_HTML_VALUE)
@@ -50,7 +50,7 @@ public class OrdonnanceController {
 		String targetFileName = "output/" + idOrdonnance;
 		byte[] contents = new byte[0];
 		try {
-			contents = douleurService.getOrdonnancePDF(targetFileName);
+			contents = ordonnanceService.getOrdonnancePDF(targetFileName);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("Service indisponible : impossible d'éditer l'ordonnance. Veuillez recommencer ultérieurement");

@@ -31,7 +31,7 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-import net.jimbe.douleur.beans.OrdonnanceForm;
+import net.jimbe.douleur.ordonnance.beans.OrdonnanceForm;
 
 public class PDFBuilder {
 

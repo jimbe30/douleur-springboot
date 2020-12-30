@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	
-	@ExceptionHandler(value = {RuntimeException.class})
+	@ExceptionHandler
 	public ResponseEntity<Object> handleRuntimeException(RuntimeException e, WebRequest request) {
 		HashMap<String, String> error = new HashMap<>();
 		error.put("error", e.getMessage());
